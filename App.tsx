@@ -6,7 +6,7 @@
  */
 
 import type { PropsWithChildren } from 'react';
-import React, { memo, useMemo } from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   SafeAreaView,
@@ -24,6 +24,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import RNBootSplash from 'react-native-bootsplash';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -63,6 +64,10 @@ const Section = memo(({ children, title }: SectionProps) => {
 const App = memo(() => {
   const { t } = useTranslation();
   const isDarkMode = useColorScheme() === 'dark';
+
+  useEffect(() => {
+    void RNBootSplash.hide({ fade: true, duration: 500 });
+  }, []);
 
   const backgroundStyle = useMemo(
     () => ({
