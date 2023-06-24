@@ -25,6 +25,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import RNBootSplash from 'react-native-bootsplash';
+import { QueryClientProvider } from '@tanstack/react-query';
+
+import { queryClient } from '~components/api/QueryProvider';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -85,27 +88,29 @@ const App = memo(() => {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
-        <Header />
-        <View style={viewBackground}>
-          <Section title="Step One">
-            {t('edit')} <Text style={styles.highlight}>{t('app')}</Text>
-            {t('description')}
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">{t('read_the_docs')}</Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      <QueryClientProvider client={queryClient}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
+          <Header />
+          <View style={viewBackground}>
+            <Section title="Step One">
+              {t('edit')} <Text style={styles.highlight}>{t('app')}</Text>
+              {t('description')}
+            </Section>
+            <Section title="See Your Changes">
+              <ReloadInstructions />
+            </Section>
+            <Section title="Debug">
+              <DebugInstructions />
+            </Section>
+            <Section title="Learn More">{t('read_the_docs')}</Section>
+            <LearnMoreLinks />
+          </View>
+        </ScrollView>
+      </QueryClientProvider>
     </SafeAreaView>
   );
 });
