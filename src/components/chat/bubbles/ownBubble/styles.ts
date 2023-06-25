@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     maxWidth: '80%',
     alignSelf: 'flex-end',
     borderRadius: 15,
+    borderBottomRightRadius: 0,
   },
   ownMessageText: {
     fontSize: 16,
