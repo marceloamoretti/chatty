@@ -2,6 +2,11 @@
 
 This is a simple React Native implemented to test ChatGPT integration.
 
+## Tech Stack
+
+- React Native
+- React Query
+  
 # How to run
 
 - Checkout this repository
