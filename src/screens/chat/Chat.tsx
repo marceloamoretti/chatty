@@ -1,5 +1,5 @@
 import React, { FC, memo, useCallback, useMemo, useState } from 'react';
-import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import ChatInput from '~components/chat/chatInput/ChatInput';
@@ -22,6 +22,7 @@ const Chat: FC = memo(() => {
   const handleSendCallback = useCallback(() => {
     handleSend(message);
     setMessage('');
+    Keyboard.dismiss();
   }, [message, handleSend]);
 
   const container = useMemo(
@@ -30,11 +31,7 @@ const Chat: FC = memo(() => {
   );
 
   return (
-    <KeyboardAvoidingView
-      style={container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'android' ? 25 : 0}
-    >
+    <KeyboardAvoidingView style={container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <MessagesList messages={messages} isLoading={isLoading} />
       <ChatInput
         value={message}
