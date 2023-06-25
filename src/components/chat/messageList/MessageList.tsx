@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { FlatList, ListRenderItemInfo, StyleSheet, View } from 'react-native';
 
 import { theme } from '~components/ui/theme';
@@ -24,6 +24,12 @@ const styles = StyleSheet.create({
 });
 
 const MessagesList: React.FC<Props> = memo(({ messages, isLoading }) => {
+  const FlatListRef = useRef<FlatList>(null);
+
+  useEffect(() => {
+    setTimeout(() => FlatListRef?.current?.scrollToEnd({ animated: true }), 100);
+  }, [messages]);
+
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<Message>) => {
       const isLastMessage = index === messages.length - 1;
@@ -36,6 +42,7 @@ const MessagesList: React.FC<Props> = memo(({ messages, isLoading }) => {
   return (
     <View style={styles.container}>
       <FlatList
+        ref={FlatListRef}
         data={messages}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
