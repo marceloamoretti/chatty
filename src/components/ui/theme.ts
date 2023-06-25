@@ -6,6 +6,9 @@ export const theme: Theme = {
     secondary: '#FFFFFF',
     bgPrimary: '#343541',
     bgSecondary: '#000000',
+    white10: '#FFFFFF10',
+    white20: '#FFFFFF20',
+    white80: '#FFFFFF80',
   },
   fontFamily: {
     semibold: 'BarlowSemiCondensed-SemiBold',

@@ -8,6 +8,9 @@ export interface Theme {
     bgSecondary: string;
     primary: string;
     secondary: string;
+    white10: string;
+    white20: string;
+    white80: string;
   };
   fontFamily: {
     medium: string;
