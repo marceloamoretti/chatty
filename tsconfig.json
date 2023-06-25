@@ -16,7 +16,7 @@
       "~utils/*": ["src/utils/*"],
       "~types/*": ["src/types/*"],
       "~components/*": ["src/components/*"],
-      "~screens/*": ["src/main/*"]
+      "~screens/*": ["src/screens/*"]
     }
   },
   "exclude": ["node_modules"]
